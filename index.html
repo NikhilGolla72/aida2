@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Eligibility</title>
+    <script>
+        async function checkEligibility(type) {
+            const studentID = document.getElementById("student_id").value;
+            const url = `http://localhost:8000/${type}?student_id=${studentID}`;  // Adjust URL for GET request
+            const response = await fetch(url);
+            const data = await response.json();
+            document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Student Eligibility System</h1>
+    <label for="student_id">Student ID:</label>
+    <input type="number" id="student_id">
+    <br><br>
+    <button onclick="checkEligibility('eligibility')">Check Scholarship Eligibility</button>
+    <button onclick="checkEligibility('exam_permission')">Check Exam Permission</button>
+    <pre id="result"></pre>
+</body>
+</html>
